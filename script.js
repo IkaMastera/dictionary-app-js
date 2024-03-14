@@ -10,7 +10,7 @@ btn.addEventListener("click", () => {
     .then((data) => {
       result.innerHTML = `<div class="word">
           <h3>${inpWord}</h3>
-          <button>
+          <button onclick="playSound()">
             <i class="fa-solid fa-volume-high"></i>
           </button>
         </div>
@@ -21,9 +21,13 @@ btn.addEventListener("click", () => {
         <p class="word-meaning">
           ${data[0].meanings[0].definitions[0].definition}
         </p>
-        <p class="word-example">${
-          data[0].meanings[0].definitions[0].example || ""
-        }</p>`;
+        <p class="word-example">
+          ${data[0].meanings[0].definitions[0].example || ""}
+        </p>`;
       sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
     });
 });
+
+function playSound() {
+  sound.play();
+}
